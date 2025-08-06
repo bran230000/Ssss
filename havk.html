@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Connection GUI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 300px;
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .status {
+            margin-top: 15px;
+            font-size: 14px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <label for="username">USERNAME</label>
+        <input type="text" id="username" name="username">
+
+        <label for="database">DATABASE</label>
+        <input type="text" id="database" name="database">
+
+        <button onclick="connectDatabase()">Connect</button>
+        <div class="status" id="status">Not connected</div>
+    </div>
+
+    <script>
+        function connectDatabase() {
+            let username = document.getElementById("username").value;
+            let database = document.getElementById("database").value;
+            let status = document.getElementById("status");
+
+            if (username && database) {
+                status.style.color = "blue";
+                status.textContent = "Connecting...";
+                
+                setTimeout(() => {
+                    status.style.color = "green";
+                    status.textContent = `Connected to ${database} as ${username}`;
+                }, 1500);
+            } else {
+                status.style.color = "red";
+                status.textContent = "Please enter both username and database.";
+            }
+        }
+    </script>
+
+</body>
+</html>
